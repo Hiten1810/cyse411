@@ -46,7 +46,9 @@ app.get("/orders/:id", (req, res) => {
     return res.status(404).json({ error: "Order not found" });
   }
 
-  // BUG: no check that order.userId === req.user.id
+  if (order.userID !== req.user.Id) {
+    return res.status(403).json({ error: "User Not Authorized"})
+  
   return res.json(order);
 });
 
