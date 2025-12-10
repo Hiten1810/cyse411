@@ -31,8 +31,8 @@ jobs:
         run: |
           semgrep \
             --config p/owasp-top-ten \
-            . \
-            --sarif --output semgrep-results.sarif
+            --sarif --output semgrep-results.sarif \
+            .
 
       - name: Upload SARIF to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
