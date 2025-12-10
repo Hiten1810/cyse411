@@ -51,7 +51,8 @@ app.post(
 
 app.post('/read-no-validate', (req, res) => {
   const filename = req.body.filename || '';
-  const joined = path.resolve(BASE_DIR, path.basename(filename)); 
+  if (filename !== path.basename(filename)){ return res.status(400).json({ error: "Incorrect filename"})};
+  const joined = path.resolve(BASE_DIR, filename); 
   if (!joined.startsWith(BASE_DIR)){ return res.status(403).json({ error: "Unauthorized access!" })};
   if (!fs.existsSync(joined)) return res.status(404).json({ error: 'File not found', path: joined });
   const content = fs.readFileSync(joined, 'utf8');
