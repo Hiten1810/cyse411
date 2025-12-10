@@ -82,3 +82,5 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
+// trigger semgrep
